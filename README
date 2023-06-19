@@ -1,0 +1,144 @@
+                            Readme for:
+                           ====================
+                            EDMS Version 1.0
+                           ====================
+
+
+0.  TABLE OF CONTENTS:
+
+    1.  Introduction
+    2.  Installing and Running EDMS
+    3.  Features In This Release
+    4.  Known Bugs and Issues
+    5.  Change-Log
+     a) v1.0
+
+=============================================================================
+1. INTRODUCTION
+
+"EDMS" is an abbreviation for 
+"Extended Document Management System" -  
+EDMS is a pure webapplication written in PHP, so to use it you need a 
+webserver, that supports PHP4 and a MySQL database server.
+
+Recommended Configuration:
+- Apache 1.3 or higher (www.apache.org)
+- PHP 4.3.1 or higher (www.php.net)
+- MySQL 11.11 or higher (www.mysql.org)
+- GNU unzip/zip version installed
+EDMS is released under the General Public Licence (GPL) - see LICENCE.TXT.
+
+For the latest information about EDMS have a look at 
+
+                http://edms.anubex.com
+
+
+
+Please feel free to contact the authors of EDMS:
+  Glen Fitzpatrick ( Developer ) 
+  Nick Verhaert ( Developer ) 
+  Tijl Dullers ( Technical Project Manager ) 
+  Rudy Verslype ( Functional Project Manager ) 
+  edms@anubex.com
+  http://edms.anubex.com
+
+=============================================================================
+2. INSTALLING AND RUNNING EDMS 
+
+Simple (if the webserver, php and mysql are running already).
+
+!!! PLEASE NOTE THAT PHP NEEDS TO BE COMPILED WITH --mime-magic enabled !!!
+
+a) extract the package edms-1.0.tgz  in your chosen webdirectory 
+   (e.g. /var/www/html/edms/ )
+
+b) create a mysql database for edms (mysql: 'create database edms'). You dont 
+   have to call it 'edms' - but it would simplify the configuration work.
+
+c) in /dbscript you should find a file named edms.sql - run it and all needed
+   tables will be created ('cat edms.sql | mysql edms').
+   The SQL-File will create the user 'admin' with default-password 'admin'
+   (CHANGE IT!) - !!! 
+
+d) edit the configuration-file /config.inc.php:
+	$cfg["site_name"]		The name of your site.
+	$cfg["version"]			The version of EDMS 
+	$cfg["help_link"]		The IMAGE or string that is displayed
+					as the online help link
+	$cfg["email_link"]		The IMAGE or string that is displayed 
+					as the MAIL TO link.
+	$cfg["server"]			The hostname or IP address of your
+					MySQL server
+	$cfg["user"]			The MySQL database user
+	$cfg["pass"]			The MySQL database password
+	$cfg["db"]			The MySQL database name
+	$cfg["basepath"]		The location on the file system where
+					EDMS has been installed
+
+	
+	EDMS supports full text indexing of documents by using conversion
+	plug-ins. In the default configuration file conversion plug-ins have
+	been defined for TXT , HTML , PDF and WORD documents. Since you will
+	need third party GNU tools to make this work those plug-in lines have been
+	commented out by default.Before you enable a specific plug-in, please
+	make sure the conversion program is available on your system and the webserver
+	user has execution permission on the tool.
+
+	The WORD indexing plug-in uses antiword which can be obtained from:
+
+	http://www.winfield.demon.nl/
+
+	The PDF indexing plug-in uses pdftotext which is part of the XPDF
+	package. The XPDF package can be obtained as an RPM/DEB file from your
+	Linux vendor or can be downloaded from:
+
+	http://www.foolabs.com/xpdf/
+ 
+	The HTML indexing plug-in uses Html2Text which can be obtained from:
+
+	
+	http://linux.tucows.com/internet/preview/170445.html 
+
+	
+	These third party utilities are also available on the EDMS website.
+
+
+	The standard magic.mime file which comes with an installation of PHP
+	4.3 contains a limited type of mime-definitions. To have all documents
+	categorised under their correct mime type you should replace/merge the
+	magic.mime file with the EDMS supplied magic.mime file which can be
+	found in the /ext directory of the EDMS archive.
+
+	All other configuration options are self explanatory and can be left to the
+   	defaults. For more information about the configuration directives ,
+	please refer to the MANUAL which can be found on http://edms.anubex.com	
+
+	
+	
+Thats it.
+
+=============================================================================
+3. SOME FEATURES OF THIS RELEASE
+
+* Project / Folder based document classification and authorisation
+* Normal/Batch up/downloading of documents
+* Full-text-search indexing through plug-ins  
+* Several search-modes 
+* Profile based user administration
+* Document version management
+* Document subscription
+* Event logging system
+
+=============================================================================
+4. KNOWN BUGS AND ISSUES
+
+* Powerpoint and Excel documents are recognised as msword documents. 
+ 
+  
+
+=============================================================================
+5. CHANGE-LOG
+
+ a) v1.0  
+
+	* Initial Release	
